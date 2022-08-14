@@ -1,4 +1,4 @@
-globalias() {
+_globalias() {
    # Get last word to the left of the cursor:
    # (z) splits into words using shell parsing
    # (A) makes it an array even if there's only one element
@@ -7,9 +7,20 @@ globalias() {
       zle _expand_alias
       zle expand-word
    fi
-   zle self-insert
 }
+
+globalias() {
+  _globalias
+  zle self-insert
+}
+
+globalias_upon_return() {
+  _globalias
+  zle accept-line
+}
+
 zle -N globalias
+zle -N globalias_upon_return
 
 # space expands all aliases, including global
 bindkey -M emacs " " globalias
@@ -21,3 +32,7 @@ bindkey -M viins "^ " magic-space
 
 # normal space during searches
 bindkey -M isearch " " magic-space
+
+# enter expands all aliases
+bindkey -M emacs "^M" globalias_upon_return
+bindkey -M viins "^M" globalias_upon_return

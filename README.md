@@ -1,21 +1,31 @@
-# Globalias plugin
+# Globalias plugin *augmented*
 
 Expands all glob expressions, subcommands and aliases (including global).
 
 Idea from: https://blog.patshead.com/2012/11/automatically-expaning-zsh-global-aliases---simplified.html.
 
+
 ## Usage
 
 Add `globalias` to the plugins array in your zshrc file:
 
+### oh-my-zsh
+
 ```zsh
 plugins=(... globalias)
+```
+
+### zplug
+```zsh
+zplug "zaky-jp/globalias-augmented", depth:1, use:'globalias.plugin.zsh'
 ```
 
 Then just press `SPACE` to trigger the expansion of a command you've written.
 
 If you only want to insert a space without expanding the command line, press
 `CTRL`+`SPACE`.
+
+Alternatively, press 'RETURN' also triggers the expansion.
 
 if you would like to filter out any values from expanding set `GLOBALIAS_FILTER_VALUES` to
 an array of said values. See [Filtered values](#filtered-values).
